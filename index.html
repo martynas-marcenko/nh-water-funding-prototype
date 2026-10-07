@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New Hampshire Water Infrastructure Funding: concept prototype</title>
+<meta name="description" content="Concept prototype of an interactive dashboard and story map of New Hampshire water infrastructure funding, built with the NHDES sample data from RFP DES 2026-23 Addendum 4.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-head">
+  <div class="wrap">
+    <p class="eyebrow">Concept prototype for RFP DES 2026-23</p>
+    <h1>New Hampshire Water Infrastructure Funding</h1>
+    <p class="lede">Where grant and loan funding for drinking water, wastewater, stormwater and dams goes, and what it pays for.</p>
+  </div>
+</header>
+<div class="notice" role="note">
+  <div class="wrap">This is not an official NHDES website. It is a working concept built by Outspirations MB from the 17-project sample NHDES published in Addendum 4. Locations are town centers. Photos, videos and the final narratives would come from NHDES.</div>
+</div>
+
+<main id="main">
+  <section class="wrap" aria-labelledby="h-overview">
+    <h2 id="h-overview">Overview</h2>
+    <div class="kpis" id="kpis" aria-live="polite"></div>
+  </section>
+
+  <section class="wrap" aria-labelledby="h-explore">
+    <h2 id="h-explore">Explore the projects</h2>
+    <form class="filters" id="filters" onsubmit="return false">
+      <div class="f"><label for="q">Search</label><input id="q" type="search" placeholder="Town, recipient or keyword"></div>
+      <div class="f"><label for="f-source">Funding source</label><select id="f-source"><option value="">All sources</option></select></div>
+      <div class="f"><label for="f-cat">Project type</label><select id="f-cat"><option value="">All types</option></select></div>
+      <div class="f"><label for="f-sys">Water system</label><select id="f-sys"><option value="">All systems</option></select></div>
+      <div class="f"><label for="f-county">County</label><select id="f-county"><option value="">All counties</option></select></div>
+      <div class="f"><label for="f-year">Commitment year</label><select id="f-year"><option value="">All years</option></select></div>
+      <div class="f f-btn"><button type="button" id="reset">Clear filters</button></div>
+    </form>
+    <p class="count" id="count" aria-live="polite"></p>
+
+    <div class="explore">
+      <div class="map-col">
+        <div id="map" class="map" role="region" aria-label="Map of funded projects. Each marker is a project; use the project list below for the same information."></div>
+        <ul class="legend" id="legend" aria-label="Map legend"></ul>
+      </div>
+      <aside class="detail" id="detail" aria-live="polite" tabindex="-1">
+        <p class="hint">Select a project on the map or in the list to see its funding, story and photos.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="h-charts">
+    <h2 id="h-charts">Funding at a glance</h2>
+    <p class="sub">Charts follow the filters above.</p>
+    <div class="charts">
+      <figure class="chart"><figcaption>Committed by funding source</figcaption><div id="c-source"></div></figure>
+      <figure class="chart"><figcaption>Committed by project type</figcaption><div id="c-cat"></div></figure>
+      <figure class="chart"><figcaption>Committed by year of binding commitment</figcaption><div id="c-year"></div></figure>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="h-arpa">
+    <h2 id="h-arpa">American Rescue Plan Act (ARPA) spotlight</h2>
+    <div id="arpa"></div>
+  </section>
+
+  <section class="story" aria-labelledby="h-story">
+    <div class="wrap"><h2 id="h-story">Stories from the map</h2>
+    <p class="sub">Scroll through. The map follows the story.</p></div>
+    <div class="story-grid wrap">
+      <div class="story-map-wrap"><div id="story-map" class="story-map" role="img" aria-label="Map that moves to the place described in each story step"></div></div>
+      <ol class="steps" id="steps"></ol>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="h-list">
+    <h2 id="h-list">Project list</h2>
+    <p class="sub">The same projects as the map, as a table. Select a column header to sort.</p>
+    <div class="table-wrap"><table id="list"><caption class="sr">Funded projects matching the filters</caption><thead></thead><tbody></tbody></table></div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Data: NHDES, RFP DES 2026-23 Addendum 4 sample (updated 9/25/2026), 17 projects. Locations geocoded to the town or village center by Outspirations MB. County outlines: US Census Bureau. Basemap: Esri World Light Gray Canvas.</p>
+    <p>Prototype by Martynas Marčenko, Outspirations MB.</p>
+  </div>
+</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="data.js"></script>
+<script src="app.js?v=2"></script>
+</body>
+</html>
